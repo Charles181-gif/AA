@@ -47,7 +47,8 @@ if (!isset($_SESSION['user_id'])) {
       <h2 class="section-title">Featured Discussions</h2>
       <div class="feature-cards">
         <div class="card">
-          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1677442135722-5f8ea49cec8a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')"></div>
+          <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?q=80&w=1530&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')"></div>
+
           <div class="card-content">
             <h3>AI Ethics</h3>
             <p>
@@ -107,7 +108,7 @@ if (!isset($_SESSION['user_id'])) {
       <li><a href="#" class="footer-link" data-modal="contact-modal">Contact Us</a></li>
     </ul>
     <div class="copyright">
-      &copy; 2023 Tech & Innovation Forum. All rights reserved.
+      &copy; 2025 Tech & Innovation Forum. All rights reserved.
     </div>
   </nav>
 </footer>
