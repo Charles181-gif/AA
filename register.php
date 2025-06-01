@@ -1,5 +1,4 @@
 <?php
-// register.php
 require_once 'config.php';
 
 // Redirect logged-in users
@@ -48,17 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $stmt->execute([$username, $email, $hashedPassword]);
                     
                     $success = "Registration successful! You can now login.";
-                    
-                    // Optional: Auto-login after registration
-                    // $user_id = $pdo->lastInsertId();
-                    // $_SESSION['user_id'] = $user_id;
-                    // $_SESSION['username'] = $username;
-                    // header("Location: forum.php");
-                    // exit();
                 }
             }
         } catch (PDOException $e) {
-            $error = "Database error: " . $e->getMessage();
+            $error = "Check Your Internet Connection" . $e->getMessage();
         }
     }
 }
@@ -69,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - Tech & Innovation Forum</title>
+    <title>Register - GCTU Connect</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .register-container {

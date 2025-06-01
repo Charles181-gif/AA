@@ -1,5 +1,4 @@
 <?php
-// contact.php
 require_once 'config.php';
 
 $success = '';
@@ -44,7 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Tech & Innovation Forum</title>
+    <title>Contact Us - GCTU Connect</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .contact-container {
@@ -128,7 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
                     </svg>
                     <h3>Email Us</h3>
-                    <p>contact@techforum.example</p>
+                    <p>https://site.gctu.edu.gh/</p>
                 </div>
                 
                 <div class="contact-card">
@@ -136,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
                     </svg>
                     <h3>Call Us</h3>
-                    <p>+1 (555) 123-4567</p>
+                    <p>059-867-0195</p>
                 </div>
                 
                 <div class="contact-card">
@@ -144,7 +143,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
                     </svg>
                     <h3>Visit Us</h3>
-                    <p>123 Tech Street<br>Innovation City, IC 12345</p>
+                    <p>GCTU Tesano Accra <br>(Nsawam Road)</p>
                 </div>
             </div>
             
@@ -188,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <li><a href="#" class="footer-link" data-modal="contact-modal">Contact Us</a></li>
     </ul>
     <div class="copyright">
-      &copy; 2025 Tech & Innovation Forum. All rights reserved.
+      &copy; GCTU Connect. All rights reserved.
     </div>
   </nav>
 </footer>
@@ -239,7 +238,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <span class="close-button">&times;</span>
     <h2>Terms of Service</h2>
     <h3>1. Acceptance of Terms</h3>
-    <p>By accessing or using the Tech & Innovation Forum, you agree to be bound by these Terms of Service.</p>
+    <p>By accessing or using the GCTU Connect Forum, you agree to be bound by these Terms of Service.</p>
     
     <h3>2. User Responsibilities</h3>
     <p>You are responsible for maintaining the confidentiality of your account and password and for restricting access to your computer.</p>
@@ -267,21 +266,21 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
           <path d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z" />
           <path d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z" />
         </svg>
-        <span>contact@techforum.example</span>
+        <span>https://site.gctu.edu.gh/</span>
       </div>
       
       <div class="contact-item">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
           <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 013-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 01-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 006.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 011.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 01-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5z" clip-rule="evenodd" />
         </svg>
-        <span>+1 (555) 123-4567</span>
+        <span>059-867-0195 </span>
       </div>
       
       <div class="contact-item">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
           <path fill-rule="evenodd" d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z" clip-rule="evenodd" />
         </svg>
-        <span>123 Tech Street, Innovation City, IC 12345</span>
+        <span>GCTU Tesano Accra (Nsawam Road)</span>
       </div>
     </div>
     

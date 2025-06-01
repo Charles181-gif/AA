@@ -1,5 +1,4 @@
 <?php
-// config.php
 session_start();
 
 define('DB_HOST', 'localhost');
@@ -18,5 +17,5 @@ try {
         ]
     );
 } catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    die("Check Your Internet Connection " . $e->getMessage());
 }

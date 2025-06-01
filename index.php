@@ -107,7 +107,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <body>
   <div class="landing-container">
     <div class="landing-left">
-      <div class="logo">Tech & Innovation Forum</div>
+      <div class="logo">GCTU Connect</div>
       <div class="tagline">Connect. Collaborate. Innovate.</div>
       
       <div class="features">
