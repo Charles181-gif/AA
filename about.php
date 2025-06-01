@@ -19,7 +19,7 @@ require_once 'config.php';
         <li><a href="forum.php">Forum</a></li>
         <li><a href="contact.php">Contact</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
-          <li><a href="logout.php">Logout (<?= htmlspecialchars($_SESSION['username']) ?>)</a></li>
+          <li><a href="logout.php">Logout Here (<?= htmlspecialchars($_SESSION['username']) ?>)</a></li>
         <?php else: ?>
           <li><a href="index.php">Login</a></li>
           <li><a href="register.php">Register</a></li>
@@ -82,7 +82,7 @@ require_once 'config.php';
         <p style="font-size: 1.2rem; margin-bottom: 30px;">
           Become part of a network of passionate individuals shaping the future of technology.
         </p>
-        <a href="register.php" class="btn" style="background: white; color: var(--primary);">Sign Up Today</a>
+        <a href="register.php" class="btn" style="background: white; color: var(--primary);">Create a Thread</a>
       </div>
     </section>
   </main>

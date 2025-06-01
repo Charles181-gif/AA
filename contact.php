@@ -96,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <li><a href="forum.php">Forum</a></li>
         <li><a href="contact.php" class="active">Contact</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
-          <li><a href="logout.php">Logout (<?= htmlspecialchars($_SESSION['username']) ?>)</a></li>
+          <li><a href="logout.php">Logout Here (<?= htmlspecialchars($_SESSION['username']) ?>)</a></li>
         <?php else: ?>
           <li><a href="index.php">Login</a></li>
           <li><a href="register.php">Register</a></li>

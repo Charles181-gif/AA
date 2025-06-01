@@ -9,8 +9,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_SESSION['user_id'])) {
     
     if (!empty($title) && !empty($content)) {
         try {
-            $stmt = $pdo->prepare("INSERT INTO threads (title, content, author) VALUES (?, ?, ?)");
-            $stmt->execute([$title, $content, $_SESSION['username']]);
+            $stmt = $pdo->prepare("INSERT INTO threads (title, content, user_id) VALUES (?, ?, ?)");
+            $stmt->execute([$title, $content, $_SESSION['user_id']]);
             header("Location: forum.php");
             exit();
         } catch (PDOException $e) {
@@ -21,9 +21,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_SESSION['user_id'])) {
     }
 }
 
-// Get all threads
+// Get all threads with author usernames
 try {
-    $stmt = $pdo->query("SELECT id, title, author, created_at FROM threads ORDER BY created_at DESC");
+    $stmt = $pdo->query("
+        SELECT t.id, t.title, t.created_at, u.username 
+        FROM threads t
+        JOIN users u ON t.user_id = u.id
+        ORDER BY t.created_at DESC
+    ");
     $threads = $stmt->fetchAll();
 } catch (PDOException $e) {
     $thread_error = "Error loading threads: " . $e->getMessage();
@@ -47,7 +52,7 @@ try {
         <li><a href="forum.php" class="active">Forum</a></li>
         <li><a href="contact.php">Contact</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
-          <li><a href="logout.php">Logout (<?= htmlspecialchars($_SESSION['username']) ?>)</a></li>
+          <li><a href="logout.php">Logout Here (<?= htmlspecialchars($_SESSION['username']) ?>)</a></li>
         <?php else: ?>
           <li><a href="index.php">Login</a></li>
           <li><a href="register.php">Register</a></li>
@@ -56,80 +61,69 @@ try {
     </nav>
   </header>
   
-  <main>
-    <section class="forum-section">
-      <h1 class="section-title">Community Forum</h1>
-      
-      <?php if (isset($_SESSION['user_id'])): ?>
-        <div class="thread-form">
-          <h2>Start a New Discussion</h2>
-          <?php if (isset($thread_error)): ?>
-            <div class="error-message"><?= htmlspecialchars($thread_error) ?></div>
-          <?php endif; ?>
-          <form method="POST" action="forum.php">
-            <div class="form-group">
-              <input type="text" id="title" name="title" placeholder="Thread title" required maxlength="255">
+<main>
+    <article class="forum-section">
+        <h1 class="section-title">Community Forum</h1>
+        
+        <?php if (isset($_SESSION['user_id'])): ?>
+            <div class="thread-form">
+                <h2>Start a New Discussion</h2>
+                <?php if (isset($thread_error)): ?>
+                    <div class="error-message" role="alert" aria-live="assertive">
+                        <?= htmlspecialchars($thread_error) ?>
+                    </div>
+                <?php endif; ?>
+                <form method="POST" action="forum.php">
+                    <div class="form-group">
+                        <input type="text" id="title" name="title" placeholder="Thread title" required maxlength="255">
+                    </div>
+                    
+                    <div class="form-group">
+                        <textarea id="content" name="content" rows="6" placeholder="What would you like to discuss?" required></textarea>
+                    </div>
+                    
+                    <button type="submit">Create Thread</button>
+                </form>
             </div>
-            
-            <div class="form-group">
-              <textarea id="content" name="content" rows="6" placeholder="What would you like to discuss?" required></textarea>
+        <?php else: ?>
+            <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 30px;">
+                <p>Please <a href="index.php">login</a> or <a href="register.php">register</a> to create new discussions.</p>
             </div>
-            
-            <button type="submit">Create Thread</button>
-          </form>
-        </div>
-      <?php else: ?>
-        <div style="background: #f8f9ff; padding: 20px; border-radius: 8px; text-align: center; margin-bottom: 30px;">
-          <p>Please <a href="index.php">login</a> or <a href="register.php">register</a> to create new discussions.</p>
-        </div>
-      <?php endif; ?>
-      
-      <h2 style="margin: 40px 0 20px;">Recent Discussions</h2>
-      
-      <?php if (count($threads) > 0): ?>
-        <table class="forum-table">
-          <thead>
-            <tr>
-              <th>Topic</th>
-              <th>Author</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <?php foreach($threads as $thread): ?>
-              <tr>
-                <td>
-                  <a href="thread.php?id=<?= $thread['id'] ?>" style="font-weight: 600;">
-                    <?= htmlspecialchars($thread['title']) ?>
-                  </a>
-                </td>
-                <td><?= htmlspecialchars($thread['author']) ?></td>
-                <td><?= date('M d, Y', strtotime($thread['created_at'])) ?></td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-      <?php else: ?>
-        <div style="text-align: center; padding: 40px; background: #f8f9ff; border-radius: 8px;">
-          <p style="font-size: 1.1rem;">No discussions yet. Be the first to start a conversation!</p>
-        </div>
-      <?php endif; ?>
-    </section>
-  </main>
-
-<footer>
-  <nav>
-    <ul class="footer-links">
-      <li><a href="#" class="footer-link" data-modal="privacy-modal">Privacy Policy</a></li>
-      <li><a href="#" class="footer-link" data-modal="terms-modal">Terms of Service</a></li>
-      <li><a href="#" class="footer-link" data-modal="contact-modal">Contact Us</a></li>
-    </ul>
-    <div class="copyright">
-      &copy; 2023 Tech & Innovation Forum. All rights reserved.
-    </div>
-  </nav>
-</footer>
-  <script src="script.js"></script>
+        <?php endif; ?>
+        
+        <h2 style="margin: 40px 0 20px;">Recent Discussions (<?= count($threads) ?>)</h2>
+        
+        <?php if (count($threads) > 0): ?>
+            <table class="forum-table">
+                <thead>
+                    <tr>
+                        <th>Topic</th>
+                        <th>Author</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($threads as $thread): ?>
+                        <tr>
+                            <td>
+                                <a href="thread.php?id=<?= htmlspecialchars($thread['id']) ?>" style="font-weight: 600;">
+                                    <?= htmlspecialchars($thread['title']) ?>
+                                </a>
+                            </td>
+                            <td><?= htmlspecialchars($thread['username']) ?></td>
+                            <td><?= date('F j, Y', strtotime($thread['created_at'])) ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        <?php else: ?>
+            <div style="text-align: center; padding: 40px; background: #f8f9ff; border-radius: 8px;">
+                <p style="font-size: 1.1rem;">No discussions yet. Be the first to start a conversation!</p>
+            </div>
+        <?php endif; ?>
+    </article>
+</main>
+<script src="script.js"></script>
   <!-- Modal Popups -->
 <div id="privacy-modal" class="modal">
   <div class="modal-content">
@@ -204,5 +198,19 @@ try {
     <p>You can also use our <a href="contact.php">contact form</a> to send us a message directly.</p>
   </div>
 </div>
+
+  <footer>
+    <nav>
+      <ul class="footer-links">
+        <li><a href="#" class="footer-link" data-modal="privacy-modal">Privacy Policy</a></li>
+        <li><a href="#" class="footer-link" data-modal="terms-modal">Terms of Service</a></li>
+        <li><a href="#" class="footer-link" data-modal="contact-modal">Contact Us</a></li>
+      </ul>
+      <div class="copyright">
+        &copy; 2023 Tech & Innovation Forum. All rights reserved.
+      </div>
+    </nav>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
