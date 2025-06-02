@@ -187,7 +187,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <li><a href="#" class="footer-link" data-modal="contact-modal">Contact Us</a></li>
     </ul>
     <div class="copyright">
-      &copy; GCTU Connect. All rights reserved.
+      &copy; 2025 GCTU Connect. All rights reserved.
     </div>
   </nav>
 </footer>
