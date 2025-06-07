@@ -41,10 +41,23 @@ try {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GCTU Connect</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style1.css" />
 </head>
 <body>
   <header>
+    <div class="logo-container">
+            <a href="#" class="logo">
+                <div class="gctu">
+                    <span class="highlight">G</span>CT<span class="highlight">U</span>
+                </div>
+                <div class="connect">Connect</div>
+                <div class="connection-dots">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+            </a>
+        </div>
     <nav>
       <ul class="navigation-menu">
         <li><a href="home.php">Home</a></li>

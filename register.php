@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $error = "All fields are required";
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email format";
-    } elseif (strlen($password) < 8) {
-        $error = "Password must be at least 8 characters";
+    } elseif (strlen($password) < 10) {
+        $error = "Password must be at least 10 characters";
     } elseif ($password !== $confirm_password) {
         $error = "Passwords do not match";
     } else {
@@ -62,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register - GCTU Connect</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style1.css">
     <style>
         .register-container {
             max-width: 500px;
