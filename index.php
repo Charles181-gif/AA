@@ -4,7 +4,7 @@ require_once __DIR__ . '/config.php'; // Use absolute path
 
 // Redirect logged-in users to forum
 if (isset($_SESSION['user_id'])) {
-    header("Location: forum.php");
+    header("Location: home.php");
     exit();
 }
 
@@ -111,7 +111,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <div class="tagline">Connect. Collaborate. Innovate.</div>
       
       <div class="features">
-        <div class="feature-item">
+        <div class="feature-item">0
           <span class="feature-icon">✓</span>
           <span>Join discussions on cutting-edge technologies</span>
         </div>

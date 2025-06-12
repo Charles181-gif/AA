@@ -48,7 +48,7 @@ try {
     <div class="logo-container">
             <a href="#" class="logo">
                 <div class="gctu">
-                    <span class="highlight">G</span>CT<span class="highlight">U</span>
+                  <span class="highlight">G</span>CT<span class="highlight">U</span>
                 </div>
                 <div class="connect">Connect</div>
                 <div class="connection-dots">
@@ -137,7 +137,7 @@ try {
     </article>
 </main>
 <script src="script.js"></script>
-  <!-- Modal Popups -->
+  <!-- Modal Popups(Footer) -->
 <div id="privacy-modal" class="modal">
   <div class="modal-content">
     <span class="close-button">&times;</span>

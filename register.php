@@ -3,7 +3,7 @@ require_once 'config.php';
 
 // Redirect logged-in users
 if (isset($_SESSION['user_id'])) {
-    header("Location: forum.php");
+    header("Location: home.php");
     exit();
 }
 
