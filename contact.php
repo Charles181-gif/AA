@@ -203,8 +203,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   </nav>
 </footer>
 
-    
-    
     <script>
         // Simple client-side validation
         document.querySelector('form').addEventListener('submit', function(e) {
