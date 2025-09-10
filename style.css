@@ -291,6 +291,22 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1rem;
+  }
+  
+  .logo-container {
+    flex-shrink: 0;
+  }
+  
+  nav {
+    flex: 1;
+    overflow-x: auto;
+  }
+  
   .hero {
     padding: 40px 20px;
   }
@@ -300,12 +316,14 @@ footer {
   }
   
   .navigation-menu {
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+    margin: 0;
   }
   
   .navigation-menu li {
-    width: 100%;
-    text-align: center;
+    flex-shrink: 0;
   }
   
   .feature-cards {
@@ -505,7 +523,7 @@ main {
     
     .forum-table td {
         display: block;
-        text-align: right;
+        text-align: left;
         padding: 0.5rem;
         border-bottom: 1px solid #eee;
     }
@@ -514,6 +532,7 @@ main {
         content: attr(data-label);
         float: left;
         font-weight: bold;
+        margin-right: 10px;
     }
     
     .forum-table td:last-child {

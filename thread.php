@@ -86,7 +86,6 @@ try {
         <li><a href="about.php">About</a></li>
         <li><a href="forum.php">Forum</a></li>
         <li><a href="contact.php">Contact</a></li>
-        <li><a href="thread.php" class="active">Thread</a></li>
         <?php if (isset($_SESSION['user_id'])): ?>
           <li><a href="logout.php">Logout Here (<?= htmlspecialchars($_SESSION['username']) ?>)</a></li>
         <?php else: ?>

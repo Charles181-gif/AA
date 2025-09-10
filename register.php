@@ -46,7 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     $stmt = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)");
                     $stmt->execute([$username, $email, $hashedPassword]);
                     
-                    $success = "Registration successful! You can now login.";
+                    
+                    $_SESSION['redirection_from_registration'] = true;
+                    
+                    header("Location: index.php");
+
                 }
             }
         } catch (PDOException $e) {
@@ -103,21 +107,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <div class="error-message"><?= htmlspecialchars($error) ?></div>
             <?php endif; ?>
             
-            <?php if ($success): ?>
-                <div class="success-message"><?= htmlspecialchars($success) ?></div>
-            <?php endif; ?>
-            
             <form method="POST" action="register.php">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username" required 
-                           value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
+                        value="<?= htmlspecialchars($_POST['username'] ?? '') ?>">
                 </div>
                 
                 <div class="form-group">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" required 
-                           value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+                        value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
                 </div>
                 
                 <div class="form-group">

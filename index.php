@@ -1,6 +1,6 @@
 <?php
 // index.php (landing page)
-require_once __DIR__ . '/config.php'; // Use absolute path
+require_once __DIR__ . '/config.php'; 
 
 // Redirect logged-in users to forum
 if (isset($_SESSION['user_id'])) {
@@ -8,16 +8,18 @@ if (isset($_SESSION['user_id'])) {
     exit();
 }
 
+isset($_SESSION['redirection_from_registration']) ? $just_registered = true : $just_registered = false;
+
 $login_error = '';
+$success = "Registration successful! You can now login.";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // The $pdo variable is now available from config.php
-    $email = trim($_POST['email'] ?? '');
+    $login = trim($_POST['login'] ?? '');
     $password = trim($_POST['password'] ?? '');
 
     try {
-        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-        $stmt->execute([$email]);
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? OR username = ?");
+        $stmt->execute([$login, $login]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
@@ -26,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             header("Location: forum.php");
             exit();
         } else {
-            $login_error = "Invalid email or password";
+            $login_error = "Invalid username/email or password";
         }
     } catch (PDOException $e) {
         $login_error = "Database error: " . $e->getMessage();
@@ -111,7 +113,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <div class="tagline">Connect. Collaborate. Innovate.</div>
       
       <div class="features">
-        <div class="feature-item">0
+        <div class="feature-item">
           <span class="feature-icon">✓</span>
           <span>Join discussions on cutting-edge technologies</span>
         </div>
@@ -135,10 +137,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php if ($login_error): ?>
           <div class="error-message"><?= htmlspecialchars($login_error) ?></div>
         <?php endif; ?>
+
+        <?php if (isset($_SESSION['redirection_from_registration']) && $_SESSION['redirection_from_registration'] = true): ?>
+          <div class="success-message"><?= htmlspecialchars($success) ?></div>
+        <?php endif; unset($_SESSION['redirection_from_registration']);?>
         
         <form method="POST" action="index.php">
-          <div class="form-group">
-            <input type="email" id="email" name="email" placeholder="Email address" required />
+          
+        <div class="form-group">
+            <input type="text" id="login" name="login" placeholder="Username or Email" required />
           </div>
           
           <div class="form-group">
